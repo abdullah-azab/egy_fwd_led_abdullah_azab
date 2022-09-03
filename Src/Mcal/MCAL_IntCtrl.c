@@ -67,6 +67,49 @@ void IntCrtl_Init(void)
 	
 
 }
+/******************************************************************************
+* \Syntax          : void IntCrtl_Init(void)                                      
+* \Description     : initialize Nvic\SCB Module by parsing the Configuration 
+*                    into Nvic\SCB registers                                    
+*                                                                             
+* \Sync\Async      : Synchronous                                               
+* \Reentrancy      : Non Reentrant                                             
+* \Parameters (in) : None                     
+* \Parameters (out): None                                                      
+* \Return value:   : None
+*******************************************************************************/
+void SYSTICK_StartTimer(uint8 Seconds)
+{
+	
+/*SysTick Control and Status Register STCTRL*/
+	volatile  uint32 * systick_base = (uint32 *)0xE000E000UL;
+	volatile  uint32 * stcntrl = (uint32 *)((uint32)systick_base + 0x010);
+	/*enable counter bit 0 set 1*/
+	stcntrl =(volatile uint32 *)((uint32)stcntrl | (1UL));
+	/*chose clock srs bit 2 sysclock 1*/
+	stcntrl =(volatile uint32 *)((uint32)stcntrl | (1UL<<2));
+	/*enable interrupt in bit 1 set 1*/
+	stcntrl =(volatile uint32 *)((uint32)stcntrl | (1UL<<1));
+	
+
+	
+}
+/******************************************************************************
+* \Syntax          : void IntCrtl_Init(void)                                      
+* \Description     : initialize Nvic\SCB Module by parsing the Configuration 
+*                    into Nvic\SCB registers                                    
+*                                                                             
+* \Sync\Async      : Synchronous                                               
+* \Reentrancy      : Non Reentrant                                             
+* \Parameters (in) : None                     
+* \Parameters (out): None                                                      
+* \Return value:   : None
+*******************************************************************************/
+void SYSTICK_Handler(void)
+{
+
+
+}
 
 /**********************************************************************************************************************
  *  END OF FILE: IntCrtl.c
